@@ -138,7 +138,7 @@
             Weight decay is a standard regularization technique for training large language models (LLMs). While it is common to assign a uniform decay rate to every layer, this approach overlooks the structural diversity of LLMs and the varying spectral properties across modules.
           </p>
           <p>
-            In this paper, we introduce <strong>AlphaDecay</strong>, a simple yet effective method that adaptively assigns different weight decay strengths to each module of an LLM. Our approach is guided by Heavy-Tailed Self-Regularization (HT-SR) theory, which analyzes the empirical spectral density (ESD) of weight correlation matrices to quantify "heavy-tailedness."
+            In this paper, weintroduce <strong>AlphaDecay</strong>, a simple yet effective method that adaptively assigns different weight decay strengths to each module of an LLM. Our approach is guided by Heavy-Tailed Self-Regularization (HT-SR) theory, which analyzes the empirical spectral density (ESD) of weight correlation matrices to quantify "heavy-tailedness."
           </p>
           <p>
             Modules exhibiting more pronounced heavy-tailed ESDs, reflecting stronger feature learning, are assigned weaker decay, while modules with lighter-tailed spectra receive stronger decay. Our method leverages tailored weight decay assignments to balance the module-wise differences in spectral properties, leading to improved performance.
@@ -152,239 +152,62 @@
   </div>
 </section>
 
+<!-- Method Overview -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method Overview</h2>
+    <div class="content has-text-centered">
+      <img src="./images/method.png" alt="Method Comparison" style="width: 100%; max-width: 700px; margin: 20px auto; display: block;">
+      <p class="has-text-justified" style="max-width: 800px; margin: 0 auto;">
+        Comparison of AlphaDecay with baseline methods on GPT-nano/C4 and ViT-tiny/ImageNet-1K. AlphaDecay achieves the best performance across different architectures and datasets.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- Results Section -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Results</h2>
+    <h2 class="title is-3 has-text-centered">Experimental Results</h2>
     
     <!-- Main Results -->
     <div class="content">
-      <h3 class="title is-4">Main Results: Adam Optimizer on C4 Dataset</h3>
+      <h3 class="title is-4">Main Results: LLaMA Pre-training on C4 Dataset</h3>
       <p class="has-text-justified">
-        Comparison with various weight decay scheduling strategies using Adam optimizer on pre-training various sizes of LLaMa models on C4 dataset. Validation perplexity (↓) is reported. All baselines are carefully tuned.
+        Comparison with various weight decay scheduling strategies using Adam optimizer on pre-training various sizes of LLaMa models (60M, 135M, 350M, 1B) on C4 dataset. Validation perplexity (↓) is reported. All baselines are carefully tuned. AlphaDecay consistently outperforms uniform decay, AWD, and AdaDecay across all model sizes and weight decay values.
       </p>
-      <div class="table-container">
-        <table class="table is-striped is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>Weight Decay</th>
-              <th colspan="3">LLaMa-60M</th>
-              <th colspan="3">LLaMa-135M</th>
-              <th colspan="3">LLaMa-350M</th>
-              <th colspan="3">LLaMa-1B</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th>1e-5</th>
-              <th>5e-6</th>
-              <th>1e-6</th>
-              <th>1e-5</th>
-              <th>5e-6</th>
-              <th>1e-6</th>
-              <th>1e-5</th>
-              <th>5e-6</th>
-              <th>1e-6</th>
-              <th>1e-5</th>
-              <th>5e-6</th>
-              <th>1e-6</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>WD=0</td>
-              <td>-</td>
-              <td>33.23</td>
-              <td>-</td>
-              <td>-</td>
-              <td>24.60</td>
-              <td>-</td>
-              <td>-</td>
-              <td>18.62</td>
-              <td>-</td>
-              <td>-</td>
-              <td>16.11</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>Uniform</td>
-              <td>32.39</td>
-              <td>32.56</td>
-              <td>33.03</td>
-              <td>22.99</td>
-              <td>23.14</td>
-              <td>24.14</td>
-              <td>17.12</td>
-              <td>16.74</td>
-              <td>17.50</td>
-              <td>15.36</td>
-              <td>14.66</td>
-              <td>15.03</td>
-            </tr>
-            <tr>
-              <td>AWD</td>
-              <td>33.78</td>
-              <td>33.74</td>
-              <td>33.74</td>
-              <td>24.25</td>
-              <td>24.45</td>
-              <td>24.53</td>
-              <td>18.32</td>
-              <td>18.55</td>
-              <td>18.79</td>
-              <td>16.03</td>
-              <td>16.22</td>
-              <td>16.38</td>
-            </tr>
-            <tr>
-              <td>Adadecay</td>
-              <td>32.24</td>
-              <td>32.52</td>
-              <td>33.03</td>
-              <td>23.20</td>
-              <td>23.08</td>
-              <td>23.96</td>
-              <td>18.21</td>
-              <td>17.42</td>
-              <td>17.91</td>
-              <td>17.23</td>
-              <td>18.14</td>
-              <td>15.35</td>
-            </tr>
-            <tr style="background-color: #fffacd;">
-              <td><strong>AlphaDecay</strong></td>
-              <td><strong>31.56</strong></td>
-              <td><strong>31.58</strong></td>
-              <td><strong>32.61</strong></td>
-              <td><strong>22.76</strong></td>
-              <td><strong>22.55</strong></td>
-              <td><strong>23.49</strong></td>
-              <td><strong>17.00</strong></td>
-              <td><strong>16.66</strong></td>
-              <td><strong>16.88</strong></td>
-              <td><strong>15.13</strong></td>
-              <td><strong>14.55</strong></td>
-              <td><strong>14.63</strong></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="has-text-centered">
+        <img src="./images/main_result.png" alt="Main Results" style="width: 100%; max-width: 900px; margin: 20px auto; display: block;">
       </div>
     </div>
 
-    <!-- AdamW Results -->
-    <div class="content">
-      <h3 class="title is-4">AdamW Optimizer Results</h3>
+    <!-- Module-wise Analysis -->
+    <div class="content" style="margin-top: 50px;">
+      <h3 class="title is-4">Module-wise Weight Decay and Spectral Analysis</h3>
       <p class="has-text-justified">
-        Comparison of various weight decay scheduling strategies using AdamW optimizer for pre-training LLaMa-60M and LLaMa-130M models. Validation perplexity (↓) on the C4 dataset is reported.
+        Analysis of module-wise weight decay assignments and their correlation with spectral properties. The figure shows:
       </p>
-      <div class="table-container">
-        <table class="table is-striped is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>Weight Decay</th>
-              <th colspan="3">LLaMa-60M</th>
-              <th colspan="3">LLaMa-135M</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th>0.1</th>
-              <th>0.05</th>
-              <th>0.01</th>
-              <th>0.1</th>
-              <th>0.05</th>
-              <th>0.01</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>WD=0</td>
-              <td>-</td>
-              <td>32.73</td>
-              <td>-</td>
-              <td>-</td>
-              <td>24.39</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>Uniform</td>
-              <td>31.95</td>
-              <td>32.31</td>
-              <td>32.66</td>
-              <td>23.32</td>
-              <td>23.81</td>
-              <td>24.28</td>
-            </tr>
-            <tr>
-              <td>AWD</td>
-              <td>32.58</td>
-              <td>32.67</td>
-              <td>32.67</td>
-              <td>24.30</td>
-              <td>24.35</td>
-              <td>24.41</td>
-            </tr>
-            <tr>
-              <td>Adadecay</td>
-              <td>31.88</td>
-              <td>32.25</td>
-              <td>32.58</td>
-              <td>23.18</td>
-              <td>23.62</td>
-              <td>24.21</td>
-            </tr>
-            <tr style="background-color: #fffacd;">
-              <td><strong>AlphaDecay</strong></td>
-              <td><strong>31.20</strong></td>
-              <td><strong>31.65</strong></td>
-              <td><strong>32.45</strong></td>
-              <td><strong>22.66</strong></td>
-              <td><strong>23.04</strong></td>
-              <td><strong>23.98</strong></td>
-            </tr>
-          </tbody>
-        </table>
+      <ul class="has-text-justified">
+        <li><strong>Top-left:</strong> PL_Alpha_Hill values for different modules, showing the heavy-tailedness of each layer</li>
+        <li><strong>Top-right:</strong> Empirical Spectral Density (ESD) of weight matrices for different modules</li>
+        <li><strong>Bottom:</strong> Dynamic weight decay assignments across layers and training iterations, demonstrating how AlphaDecay adaptively balances module-wise differences</li>
+      </ul>
+      <div class="has-text-centered">
+        <img src="./images/more_stru.png" alt="Module-wise Analysis" style="width: 100%; max-width: 900px; margin: 20px auto; display: block;">
       </div>
     </div>
 
-    <!-- ViT Results -->
-    <div class="content">
-      <h3 class="title is-4">ViT-tiny on ImageNet-1K</h3>
+    <!-- Zero-shot Evaluation -->
+    <div class="content" style="margin-top: 50px;">
+      <h3 class="title is-4">Zero-shot Evaluation on Downstream Tasks</h3>
       <p class="has-text-justified">
-        Comparison of various weight decay scheduling strategies using the Adam optimizer for training ViT-tiny on ImageNet-1K. Top-1 accuracy (%) is reported on the ImageNet-1K validation set.
+        Zero-shot performance comparison on various downstream tasks including ARC-c, ARC-e, PIQA, Hellaswag, OBQA, Winogrande, and BOOLQ. AlphaDecay demonstrates superior generalization capability with the highest average score of 43.35, outperforming Uniform (41.50), AdaDecay (41.68), and AWD (41.41) methods.
       </p>
-      <div class="table-container">
-        <table class="table is-striped is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>Weight Decay</th>
-              <th>Uniform</th>
-              <th>AWD</th>
-              <th>AdaDecay</th>
-              <th>AlphaDecay</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>0</td>
-              <td colspan="4">65.12</td>
-            </tr>
-            <tr>
-              <td>5e-6</td>
-              <td>66.97</td>
-              <td>65.21</td>
-              <td>65.86</td>
-              <td><strong>67.40</strong></td>
-            </tr>
-            <tr>
-              <td>1e-6</td>
-              <td>66.41</td>
-              <td>64.98</td>
-              <td>66.26</td>
-              <td><strong>67.73</strong></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="has-text-centered">
+        <img src="./images/zeros-shot.png" alt="Zero-shot Results" style="width: 100%; max-width: 900px; margin: 20px auto; display: block;">
       </div>
     </div>
+
   </div>
 </section>
 
@@ -435,8 +258,7 @@ conda install -r requirements</code></pre>
 
       <h3 class="title is-4">Pretraining ViT-tiny on Imagenet-1K</h3>
       <pre><code>torchrun --nproc_per_node=2 --master_port=20023 --master_addr=localhost main.py \
-    --model vit_deit_tiny_patch16_224 \
-    --drop_path 0.1 \
+    --model vit_deit_tiny_patch16_224 \--drop_path 0.1 \
     --batch_size 192 \
     --lr 4e-3 \
     --weight_decay 0.000005 \
@@ -475,7 +297,7 @@ conda install -r requirements</code></pre>
   <div class="container is-max-desktop content">
     <h2 class="title">Acknowledgements</h2>
     <p>
-      This repository is built upon the <a href="https://github.com/jiaweizzhao/GaLore">Galore</a> and <a href="https://github.com/jiaweizzhao/GaLore>ConvNeXt</a> repositories. Thanks for their great work!
+      This repository is built upon the <a href="https://github.com/jiaweizzhao/GaLore">Galore</a> and <a href="https://github.com/jiaweizzhao/GaLore">ConvNeXt</a> repositories. Thanks for their great work!
     </p>
   </div>
 </section>
