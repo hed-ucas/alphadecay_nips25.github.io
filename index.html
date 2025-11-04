@@ -1,308 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
+  <meta name="description" content="AlphaDecay: Module-wise Weight Decay for Heavy-Tailed Balancing in LLMs">
+  <meta name="keywords" content="AlphaDecay, Weight Decay, Large Language Models, LLM, Deep Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="AlphaDecay: Module-wise Weight Decay for Heavy-Tailed Balancing in LLMs">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <title>AlphaDecay: Module-wise Weight Decay for Heavy-Tailed Balancing in LLMs</title>
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PYVRSFMDRL');
   </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
 <body>
 
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">AlphaDecay: Module-wise Weight Decay for Heavy-Tailed Balancing in LLMs</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Di He</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Ajay Jaiswal</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Songjun Tu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Li Shen</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="#">Ganzhao Yuan</a><sup>4</sup>,</span>
+            <span class="author-block">
+              <a href="#">Shiwei Liu</a><sup>5</sup>,</span>
+            <span class="author-block">
+              <a href="#">Lu Yin</a><sup>6</sup></span>
           </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
 
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Chinese Academy of Sciences,</span>
+            <span class="author-block"><sup>2</sup>Georgia Institute of Technology,</span>
+            <span class="author-block"><sup>3</sup>JD Explore Academy,</span>
+            <span class="author-block"><sup>4</sup>Sun Yat-sen University,</span>
+            <span class="author-block"><sup>5</sup>University of Oxford,</span>
+            <span class="author-block"><sup>6</sup>Eindhoven University of Technology</span>
+          </div>
+
           <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
-
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://export.arxiv.org/abs/2506.14562"
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                    <i class="ai ai-arxiv"></i>
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://export.arxiv.org/abs/2506.14562"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/hed-ucas/alphadecay_nips25.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
                 </a>
               </span>
             </div>
@@ -313,208 +104,406 @@
   </div>
 </section>
 
-
-<!-- Teaser video-->
+<!-- Teaser Image -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
+      <img src="./images/AlphaDecay.png" alt="AlphaDecay Overview" style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        AlphaDecay determines the weight decay parameter values of each module in LLM training through spectral characteristics of the ESD distribution.
       </h2>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
+<!-- Abstract. -->
+<section class="section">
   <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">TL;DR</h2>
+        <div class="content has-text-justified">
+          <p>
+            We propose <strong>AlphaDecay</strong>, an adaptive weight decay strategy that assigns module-wise decay strengths according to the spectral characteristics of each module in LLMs, leading to improved perplexity and generalization compared to uniform and existing adaptive decay methods.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Weight decay is a standard regularization technique for training large language models (LLMs). While it is common to assign a uniform decay rate to every layer, this approach overlooks the structural diversity of LLMs and the varying spectral properties across modules.
+          </p>
+          <p>
+            In this paper, we introduce <strong>AlphaDecay</strong>, a simple yet effective method that adaptively assigns different weight decay strengths to each module of an LLM. Our approach is guided by Heavy-Tailed Self-Regularization (HT-SR) theory, which analyzes the empirical spectral density (ESD) of weight correlation matrices to quantify "heavy-tailedness."
+          </p>
+          <p>
+            Modules exhibiting more pronounced heavy-tailed ESDs, reflecting stronger feature learning, are assigned weaker decay, while modules with lighter-tailed spectra receive stronger decay. Our method leverages tailored weight decay assignments to balance the module-wise differences in spectral properties, leading to improved performance.
+          </p>
+          <p>
+            Extensive pre-training tasks with various model sizes from 60M to 1B demonstrate that AlphaDecay achieves better perplexity and generalization than conventional uniform decay and other adaptive decay baselines.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End paper abstract -->
 
+<!-- Results Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    
+    <!-- Main Results -->
+    <div class="content">
+      <h3 class="title is-4">Main Results: Adam Optimizer on C4 Dataset</h3>
+      <p class="has-text-justified">
+        Comparison with various weight decay scheduling strategies using Adam optimizer on pre-training various sizes of LLaMa models on C4 dataset. Validation perplexity (↓) is reported. All baselines are carefully tuned.
+      </p>
+      <div class="table-container">
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Weight Decay</th>
+              <th colspan="3">LLaMa-60M</th>
+              <th colspan="3">LLaMa-135M</th>
+              <th colspan="3">LLaMa-350M</th>
+              <th colspan="3">LLaMa-1B</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>1e-5</th>
+              <th>5e-6</th>
+              <th>1e-6</th>
+              <th>1e-5</th>
+              <th>5e-6</th>
+              <th>1e-6</th>
+              <th>1e-5</th>
+              <th>5e-6</th>
+              <th>1e-6</th>
+              <th>1e-5</th>
+              <th>5e-6</th>
+              <th>1e-6</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>WD=0</td>
+              <td>-</td>
+              <td>33.23</td>
+              <td>-</td>
+              <td>-</td>
+              <td>24.60</td>
+              <td>-</td>
+              <td>-</td>
+              <td>18.62</td>
+              <td>-</td>
+              <td>-</td>
+              <td>16.11</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Uniform</td>
+              <td>32.39</td>
+              <td>32.56</td>
+              <td>33.03</td>
+              <td>22.99</td>
+              <td>23.14</td>
+              <td>24.14</td>
+              <td>17.12</td>
+              <td>16.74</td>
+              <td>17.50</td>
+              <td>15.36</td>
+              <td>14.66</td>
+              <td>15.03</td>
+            </tr>
+            <tr>
+              <td>AWD</td>
+              <td>33.78</td>
+              <td>33.74</td>
+              <td>33.74</td>
+              <td>24.25</td>
+              <td>24.45</td>
+              <td>24.53</td>
+              <td>18.32</td>
+              <td>18.55</td>
+              <td>18.79</td>
+              <td>16.03</td>
+              <td>16.22</td>
+              <td>16.38</td>
+            </tr>
+            <tr>
+              <td>Adadecay</td>
+              <td>32.24</td>
+              <td>32.52</td>
+              <td>33.03</td>
+              <td>23.20</td>
+              <td>23.08</td>
+              <td>23.96</td>
+              <td>18.21</td>
+              <td>17.42</td>
+              <td>17.91</td>
+              <td>17.23</td>
+              <td>18.14</td>
+              <td>15.35</td>
+            </tr>
+            <tr style="background-color: #fffacd;">
+              <td><strong>AlphaDecay</strong></td>
+              <td><strong>31.56</strong></td>
+              <td><strong>31.58</strong></td>
+              <td><strong>32.61</strong></td>
+              <td><strong>22.76</strong></td>
+              <td><strong>22.55</strong></td>
+              <td><strong>23.49</strong></td>
+              <td><strong>17.00</strong></td>
+              <td><strong>16.66</strong></td>
+              <td><strong>16.88</strong></td>
+              <td><strong>15.13</strong></td>
+              <td><strong>14.55</strong></td>
+              <td><strong>14.63</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+    <!-- AdamW Results -->
+    <div class="content">
+      <h3 class="title is-4">AdamW Optimizer Results</h3>
+      <p class="has-text-justified">
+        Comparison of various weight decay scheduling strategies using AdamW optimizer for pre-training LLaMa-60M and LLaMa-130M models. Validation perplexity (↓) on the C4 dataset is reported.
+      </p>
+      <div class="table-container">
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Weight Decay</th>
+              <th colspan="3">LLaMa-60M</th>
+              <th colspan="3">LLaMa-135M</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>0.1</th>
+              <th>0.05</th>
+              <th>0.01</th>
+              <th>0.1</th>
+              <th>0.05</th>
+              <th>0.01</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>WD=0</td>
+              <td>-</td>
+              <td>32.73</td>
+              <td>-</td>
+              <td>-</td>
+              <td>24.39</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Uniform</td>
+              <td>31.95</td>
+              <td>32.31</td>
+              <td>32.66</td>
+              <td>23.32</td>
+              <td>23.81</td>
+              <td>24.28</td>
+            </tr>
+            <tr>
+              <td>AWD</td>
+              <td>32.58</td>
+              <td>32.67</td>
+              <td>32.67</td>
+              <td>24.30</td>
+              <td>24.35</td>
+              <td>24.41</td>
+            </tr>
+            <tr>
+              <td>Adadecay</td>
+              <td>31.88</td>
+              <td>32.25</td>
+              <td>32.58</td>
+              <td>23.18</td>
+              <td>23.62</td>
+              <td>24.21</td>
+            </tr>
+            <tr style="background-color: #fffacd;">
+              <td><strong>AlphaDecay</strong></td>
+              <td><strong>31.20</strong></td>
+              <td><strong>31.65</strong></td>
+              <td><strong>32.45</strong></td>
+              <td><strong>22.66</strong></td>
+              <td><strong>23.04</strong></td>
+              <td><strong>23.98</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
+    </div>
+
+    <!-- ViT Results -->
+    <div class="content">
+      <h3 class="title is-4">ViT-tiny on ImageNet-1K</h3>
+      <p class="has-text-justified">
+        Comparison of various weight decay scheduling strategies using the Adam optimizer for training ViT-tiny on ImageNet-1K. Top-1 accuracy (%) is reported on the ImageNet-1K validation set.
+      </p>
+      <div class="table-container">
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Weight Decay</th>
+              <th>Uniform</th>
+              <th>AWD</th>
+              <th>AdaDecay</th>
+              <th>AlphaDecay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td colspan="4">65.12</td>
+            </tr>
+            <tr>
+              <td>5e-6</td>
+              <td>66.97</td>
+              <td>65.21</td>
+              <td>65.86</td>
+              <td><strong>67.40</strong></td>
+            </tr>
+            <tr>
+              <td>1e-6</td>
+              <td>66.41</td>
+              <td>64.98</td>
+              <td>66.26</td>
+              <td><strong>67.73</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
     </div>
   </div>
-</div>
-</div>
 </section>
-<!-- End image carousel -->
 
+<!-- Installation and Usage -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Installation</h2>
+    <div class="content">
+      <h3 class="title is-4">Setup</h3>
+      <p>Our repository is built on top of <a href="https://github.com/jiaweizzhao/GaLore">Galore</a> and <a href="https://github.com/jiaweizzhao/GaLore">ConvNeXt</a>. You can configure the environment using the following command lines:</p>
+      <pre><code>conda create -n alphadecay python=3.9 -y
+conda activate alphadecay
+conda install -r requirements</code></pre>
 
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
+      <h3 class="title is-4">Prepare Dataset</h3>
+      <p>We utilized the publicly available C4 dataset and ImageNet-1K dataset, both of which can be accessed and downloaded from their respective official websites.</p>
     </div>
   </div>
 </section>
-<!-- End youtube video -->
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Usage</h2>
+    <div class="content">
+      <h3 class="title is-4">Pretraining LLama-130M on C4</h3>
+      <pre><code>torchrun --nproc_per_node=2 --master_port=20301 --master_addr=localhost torchrun_main.py \
+    --model_config configs/llama_130m.json \
+    --optimizer adam \
+    --seed 5 \
+    --lr 0.001 \
+    --batch_size 256 \
+    --total_batch_size 512 \
+    --num_training_steps 20000 \
+    --warmup_steps 2000 \
+    --weight_decay 0.00001 \
+    --use_modulewise_wd \
+    --alpha_positively_with_WD \
+    --unbalancedWD_every 500 \
+    --esd_metric_for_tb alpha \
+    --assign_func tb_linear_map\
+    --wd_min_ratio 0.6666 \
+    --wd_max_ratio 3 \
+    --dtype bfloat16 \
+    --eval_every 1000 \
+    --wandb_name ours-adam-1.5-3unb-130M-lr0.001-WD0.00001-repeat1 \
+    --target_eval_tokens 10_000_000 \
+    --save_every 10000</code></pre>
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
+      <h3 class="title is-4">Pretraining ViT-tiny on Imagenet-1K</h3>
+      <pre><code>torchrun --nproc_per_node=2 --master_port=20023 --master_addr=localhost main.py \
+    --model vit_deit_tiny_patch16_224 \
+    --drop_path 0.1 \
+    --batch_size 192 \
+    --lr 4e-3 \
+    --weight_decay 0.000005 \
+    --use_modulewise_wd \
+    --alpha_positively_with_WD \
+    --unbalancedWD_every 500 \
+    --esd_metric_for_tb alpha \
+    --assign_func tb_linear_map\
+    --wd_min_ratio 0.6666 \
+    --wd_max_ratio 3 \
+    --update_freq 1 \
+    --model_ema true \
+    --model_ema_eval true \
+    --data_path /home/hedi/ImageNet \
+    --output_dir /home/hedi/LLM/ViT-awd/outputs \
+    --wandb_name vit_deit_tiny_patch16_224-Ours-WD0.000005-1.5-5unb</code></pre>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{he2025alphadecay,
+  title={AlphaDecay: Module-wise Weight Decay for Heavy-Tailed Balancing in LLMs},
+  author={He, Di and Jaiswal, Ajay and Tu, Songjun and Shen, Li and Yuan, Ganzhao and Liu, Shiwei and Yin, Lu},
+  journal={arXiv preprint arXiv:2506.14562},
+  year={2025}
 }</code></pre>
-    </div>
+  </div>
 </section>
-<!--End BibTex citation -->
 
+<!-- Acknowledgements -->
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    <p>
+      This repository is built upon the <a href="https://github.com/jiaweizzhao/GaLore">Galore</a> and <a href="https://github.com/jiaweizzhao/GaLore>ConvNeXt</a> repositories. Thanks for their great work!
+    </p>
+  </div>
+</section>
 
-  <footer class="footer">
+<footer class="footer">
   <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://export.arxiv.org/abs/2506.14562">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/hed-ucas/alphadecay_nips25.github.io" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
-
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>
