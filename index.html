@@ -134,19 +134,44 @@
 </section>
 
 
-<!-- Method Overview -->
+  <!-- Module Spectral Analysis -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-4 has-text-centered">Method Overview</h2>
-    <div class="content has-text-centered">
-      <img src="./images/more_stru.png" alt="Method Comparison" style="width: 100%; max-width: 700px; margin: 20px auto; display: block;">
-      <p class="has-text-justified" style="max-width: 800px; margin: 0 auto;">
-        AlphaDecay determines the weight decay parameter values of each module in LLM training through spectral characteristics of the ESD distribution.
+    <h2 class="title is-3 has-text-centered">Method Overview</h2>
+
+    <!-- Spectral Characteristics -->
+    <div class="content">
+      <p class="has-text-justified">
+        Modules display distinct spectral characteristics — attention layers are heavier-tailed, while MLP layers are lighter-tailed.
       </p>
+      <div class="has-text-centered">
+        <img src="./images/module_spectral.png" alt="Module Spectral" style="width: 80%; max-width: 900px; margin: 20px auto; display: block;">
+      </div>
+    </div>
+
+    <!-- PL_Alpha_Hill Assignment -->
+    <div class="content" style="margin-top: 50px;">
+      <p class="has-text-justified">
+        AlphaDecay assigns larger weight decay to modules with higher PL_Alpha_Hill values, while assigning smaller weight decay to those with lower PL_Alpha_Hill values.
+      </p>
+      <div class="has-text-centered">
+        <img src="./images/more_stru.png" alt="More Structure" style="width: 80%; max-width: 600px; margin: 20px auto; display: block;">
+      </div>
+    </div>
+
+    <!-- Spectral Balancing & Performance -->
+    <div class="content" style="margin-top: 50px;">
+      <p class="has-text-justified">
+        AlphaDecay balances module spectra and consistently improves performance over existing optimizers.
+      </p>
+      <div class="has-text-centered">
+        <img src="./images/diff_WD.png" alt="Different Weight Decay" style="width: 80%; max-width: 600px; margin: 20px auto; display: block;">
+      </div>
     </div>
   </div>
 </section>
 
+  
 
 <!-- Results Section -->
 <section class="section">
