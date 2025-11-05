@@ -97,16 +97,41 @@
   </div>
 </section>
 
-<div>
-  <h2>Overview</h2>
-  <p>Alphadecay is a novel method for boosting the training efficacy of various optimizers. By leveraging the spectral-feature discrepancies among modules in LLMs, it dynamically adjusts the weight-decay coefficients of optimizers to achieve superior model performance.</p>
-  <h3>Standout Features</h3>
-  <ul>
-    <li><strong>Zero Extra Tuning Cost:</strong> Once the optimal weight-decay value for your optimizer is fixed, Alphadecay is applied directly—no additional hyper-parameter search is required.</li>
-    <li><strong>Optimizer Compatibility:</strong> With a single click, Alphadecay works out-of-the-box with Adam, AdamW, and many other optimizers, requiring no extra code for each.</li>
-    <li><strong>Task Versatility:</strong> Alphadecay is effective across a wide range of tasks, including LLM pre-training, LLM fine-tuning, image classification, and more.</li>
-  </ul>
-</div>
+<!-- Alphadecay Overview. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>AlphaDecay</strong> is a plug-and-play method that boosts training efficacy for diverse optimizers by dynamically tuning <em>module-wise</em> weight-decay coefficients according to the spectral-feature discrepancies observed in LLMs, yielding better perplexity and downstream generalization.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Stand-out Features</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="icon has-text-info"><i class="fas fa-check-circle"></i></span>
+            <strong>Zero Extra Tuning Cost:</strong> After the global weight-decay value is fixed, AlphaDecay is applied instantly—no additional grid-search or Bayesian optimization is required.
+          </p>
+          <p>
+            <span class="icon has-text-success"><i class="fas fa-cogs"></i></span>
+            <strong>Optimizer Agnostic:</strong> One-click integration with Adam, AdamW, Lion, Shampoo, and more; no per-optimizer code changes.
+          </p>
+          <p>
+            <span class="icon has-text-warning"><i class="fas fa-tasks"></i></span>
+            <strong>Task Versatile:</strong> Demonstrated gains on LLM pre-training, fine-tuning, vision transformers, and large-scale image classification.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
