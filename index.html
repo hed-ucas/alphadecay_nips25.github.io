@@ -126,68 +126,19 @@
 </section>
 
 
-
-  
-<!-- Teaser Image -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="./images/more_stru.png" alt="AlphaDecay Overview" style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
-      <h2 class="subtitle has-text-centered">
-        AlphaDecay determines the weight decay parameter values of each module in LLM training through spectral characteristics of the ESD distribution.
-      </h2>
-    </div>
-  </div>
-</section>
-
-<!-- Abstract. -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">TL;DR</h2>
-        <div class="content has-text-justified">
-          <p>
-            We propose <strong>AlphaDecay</strong>, an adaptive weight decay strategy that assigns module-wise decay strengths according to the spectral characteristics of each module in LLMs, leading to improved perplexity and generalization compared to uniform and existing adaptive decay methods.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Weight decay is a standard regularization technique for training large language models (LLMs). While it is common to assign a uniform decay rate to every layer, this approach overlooks the structural diversity of LLMs and the varying spectral properties across modules.
-          </p>
-          <p>
-            In this paper, weintroduce <strong>AlphaDecay</strong>, a simple yet effective method that adaptively assigns different weight decay strengths to each module of an LLM. Our approach is guided by Heavy-Tailed Self-Regularization (HT-SR) theory, which analyzes the empirical spectral density (ESD) of weight correlation matrices to quantify "heavy-tailedness."
-          </p>
-          <p>
-            Modules exhibiting more pronounced heavy-tailed ESDs, reflecting stronger feature learning, are assigned weaker decay, while modules with lighter-tailed spectra receive stronger decay. Our method leverages tailored weight decay assignments to balance the module-wise differences in spectral properties, leading to improved performance.
-          </p>
-          <p>
-            Extensive pre-training tasks with various model sizes from 60M to 1B demonstrate that AlphaDecay achieves better perplexity and generalization than conventional uniform decay and other adaptive decay baselines.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Method Overview -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Method Overview</h2>
     <div class="content has-text-centered">
-      <img src="./images/method.png" alt="Method Comparison" style="width: 100%; max-width: 700px; margin: 20px auto; display: block;">
+      <img src="./images/more_stru.png" alt="Method Comparison" style="width: 100%; max-width: 700px; margin: 20px auto; display: block;">
       <p class="has-text-justified" style="max-width: 800px; margin: 0 auto;">
-        Comparison of AlphaDecay with baseline methods on GPT-nano/C4 and ViT-tiny/ImageNet-1K. AlphaDecay achieves the best performance across different architectures and datasets.
+        AlphaDecay determines the weight decay parameter values of each module in LLM training through spectral characteristics of the ESD distribution.
       </p>
     </div>
   </div>
 </section>
+
 
 <!-- Results Section -->
 <section class="section">
@@ -209,13 +160,24 @@
     <div class="content" style="margin-top: 50px;">
       <h3 class="title is-4">Zero-shot Evaluation on Downstream Tasks</h3>
       <p class="has-text-justified">
-        Zero-shot performance comparison on various downstream tasks including ARC-c, ARC-e, PIQA, Hellaswag, OBQA, Winogrande, and BOOLQ. AlphaDecay demonstrates superior generalization capability with the highest average score of 43.35, outperforming Uniform (41.50), AdaDecay (41.68), and AWD (41.41) methods.
+        Zero-shot performance comparison on various downstream tasks including ARC-c, ARC-e, PIQA, Hellaswag, OBQA, Winogrande, and BOOLQ. AlphaDecay demonstrates superior generalization capability, outperforming Uniform, AdaDecay, and AWD methods.
       </p>
       <div class="has-text-centered">
         <img src="./images/zeros-shot.png" alt="Zero-shot Results" style="width: 100%; max-width: 900px; margin: 20px auto; display: block;">
       </div>
     </div>
 
+        <!-- Zero-shot Evaluation -->
+    <div class="content" style="margin-top: 50px;">
+      <h3 class="title is-4">More model structures and datasets</h3>
+      <p class="has-text-justified">
+        Comparison of AlphaDecay with baseline methods on GPT-nano/C4 and ViT-tiny/ImageNet-1K. AlphaDecay achieves the best performance across different architectures and datasets.
+      </p>
+      <div class="has-text-centered">
+        <img src="./images/method.png" alt="Zero-shot Results" style="width: 100%; max-width: 900px; margin: 20px auto; display: block;">
+      </div>
+    </div>
+    
   </div>
 </section>
 
