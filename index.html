@@ -71,7 +71,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://export.arxiv.org/abs/2506.14562"
+                <a href="https://arxiv.org/pdf/2506.14562"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -79,18 +79,9 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <span class="link-block">
-                <a href="https://export.arxiv.org/abs/2506.14562"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/hed-ucas/alphadecay_nips25.github.io"
+                <a href="https://github.com/hed-ucas/AlphaDecay"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -110,7 +101,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="./images/AlphaDecay.png" alt="AlphaDecay Overview" style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
+      <img src="./images/method.png" alt="AlphaDecay Overview" style="width: 100%; max-width: 800px; margin: 0 auto; display: block;">
       <h2 class="subtitle has-text-centered">
         AlphaDecay determines the weight decay parameter values of each module in LLM training through spectral characteristics of the ESD distribution.
       </h2>
@@ -180,22 +171,6 @@
       </p>
       <div class="has-text-centered">
         <img src="./images/main_result.png" alt="Main Results" style="width: 100%; max-width: 900px; margin: 20px auto; display: block;">
-      </div>
-    </div>
-
-    <!-- Module-wise Analysis -->
-    <div class="content" style="margin-top: 50px;">
-      <h3 class="title is-4">Module-wise Weight Decay and Spectral Analysis</h3>
-      <p class="has-text-justified">
-        Analysis of module-wise weight decay assignments and their correlation with spectral properties. The figure shows:
-      </p>
-      <ul class="has-text-justified">
-        <li><strong>Top-left:</strong> PL_Alpha_Hill values for different modules, showing the heavy-tailedness of each layer</li>
-        <li><strong>Top-right:</strong> Empirical Spectral Density (ESD) of weight matrices for different modules</li>
-        <li><strong>Bottom:</strong> Dynamic weight decay assignments across layers and training iterations, demonstrating how AlphaDecay adaptively balances module-wise differences</li>
-      </ul>
-      <div class="has-text-centered">
-        <img src="./images/more_stru.png" alt="Module-wise Analysis" style="width: 100%; max-width: 900px; margin: 20px auto; display: block;">
       </div>
     </div>
 
