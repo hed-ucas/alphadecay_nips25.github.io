@@ -8,7 +8,7 @@
   <title>AlphaDecay: Module-wise Weight Decay for Heavy-Tailed Balancing in LLMs</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL "></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -16,25 +16,56 @@
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans |Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css ">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <!-- New background and university logo styles -->
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      background-attachment: fixed;
+    }
+    .hero {
+      background: linear-gradient(135deg, #e0e7ff 0%, #d1e0ff 100%);
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .university-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .university-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      filter: grayscale(50%);
+      transition: filter 0.3s ease;
+    }
+    .university-logo:hover {
+      filter: grayscale(0%);
+    }
+  </style>
 </head>
 <body>
 
 <section class="hero">
-<style>
+  <style>
 .publication-title.sebra-style {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size:   40px;        
@@ -80,25 +111,25 @@
 
 <div class="agarshk-authors">
   <span class="author-block">
-    <a href="https://github.com/hed-ucas">Di He</a><sup>1,2,3</sup>,
+    <a href="https://github.com/hed-ucas ">Di He</a><sup>1,2,3</sup>,
   </span>
   <span class="author-block">
-    <a href="https://scholar.google.com/citations?user=_5Ir0soAAAAJ&hl=en">Songjun Tu</a><sup>2,3</sup>,
+    <a href="https://scholar.google.com/citations?user=_5Ir0soAAAAJ&hl=en ">Songjun Tu</a><sup>2,3</sup>,
   </span>
   <span class="author-block">
-    <a href="https://scholar.google.com/citations?hl=en&user=I783HxYAAAAJ&view_op=list_works&sortby=pubdate">Ajay Jaiswal</a><sup>4</sup>,
+    <a href="https://scholar.google.com/citations?hl=en&user=I783HxYAAAAJ&view_op=list_works&sortby=pubdate ">Ajay Jaiswal</a><sup>4</sup>,
   </span>
   <span class="author-block">
-    <a href="https://sites.google.com/site/mathshenli/home">Li Shen</a><sup>5</sup>,
+    <a href="https://sites.google.com/site/mathshenli/home ">Li Shen</a><sup>5</sup>,
   </span>
   <span class="author-block">
-    <a href="https://yuangzh.github.io/">Ganzhao Yuan</a><sup>6</sup>,
+    <a href="https://yuangzh.github.io/ ">Ganzhao Yuan</a><sup>6</sup>,
   </span>
   <span class="author-block">
-    <a href="https://scholar.google.com/citations?user=73IbXtsAAAAJ&hl=en">Shiwei Liu</a><sup>7</sup>,
+    <a href="https://scholar.google.com/citations?user=73IbXtsAAAAJ&hl=en ">Shiwei Liu</a><sup>7</sup>,
   </span>
   <span class="author-block">
-    <a href="https://luuyin.com/">Lu Yin</a><sup>8*</sup>
+    <a href="https://luuyin.com/ ">Lu Yin</a><sup>8*</sup>
   </span>
 </div>
 
@@ -125,7 +156,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2506.14562"
+                <a href="https://arxiv.org/pdf/2506.14562 "
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -135,7 +166,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/hed-ucas/AlphaDecay"
+                <a href="https://github.com/hed-ucas/AlphaDecay "
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -144,6 +175,18 @@
                 </a>
               </span>
             </div>
+          </div>
+
+          <!-- University Logos -->
+          <div class="university-logos">
+            <img src="./images/oxford.png" alt="Oxford" class="university-logo">
+            <img src="./images/pcl.png" alt="PCL" class="university-logo">
+            <img src="./images/SUAT.png" alt="SUAT" class="university-logo">
+            <img src="./images/surrey.png" alt="Surrey" class="university-logo">
+            <img src="./images/sz.png" alt="SZ" class="university-logo">
+            <img src="./images/texas.png" alt="Texas" class="university-logo">
+            <img src="./images/ucas.png" alt="UCAS" class="university-logo">
+            <img src="./images/zhongshan.png" alt="Zhongshan" class="university-logo">
           </div>
         </div>
       </div>
@@ -215,8 +258,6 @@
   </div>
 </section>
 
-  
-
 <!-- Results Section -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -244,7 +285,7 @@
       </div>
     </div>
 
-        <!-- Zero-shot Evaluation -->
+    <!-- Zero-shot Evaluation -->
     <div class="content" style="margin-top: 50px;">
       <h3 class="title is-4">More model structures and datasets</h3>
       <p class="has-text-justified">
@@ -276,7 +317,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title">Acknowledgements</h2>
     <p>
-      This repository is built upon the <a href="https://github.com/jiaweizzhao/GaLore">Galore</a> and <a href="https://github.com/jiaweizzhao/GaLore">ConvNeXt</a> repositories. Thanks for their great work!
+      This repository is built upon the <a href="https://github.com/jiaweizzhao/GaLore ">Galore</a> and <a href="https://github.com/jiaweizzhao/GaLore ">ConvNeXt</a> repositories. Thanks for their great work!
     </p>
   </div>
 </section>
@@ -284,10 +325,10 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="https://export.arxiv.org/abs/2506.14562">
+      <a class="icon-link" href="https://export.arxiv.org/abs/2506.14562 ">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/hed-ucas/alphadecay_nips25.github.io" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/hed-ucas/alphadecay_nips25.github.io " class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
@@ -295,10 +336,10 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/ ">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
           <p>
-            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io ">Nerfies</a>.
           </p>
         </div>
       </div>
