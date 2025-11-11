@@ -55,40 +55,61 @@
           
 
 
-          <div class="institution-logos">
+<div class="institution-logos">
   <style>
     .institution-logos{
       display:flex;
       flex-wrap:wrap;
       justify-content:center;
-      align-items:baseline;  
-      gap:2.0rem;          
+      gap:2rem;
       margin:1.2rem 0 2.4rem 0;
     }
-    .institution-logos img{
-      height:40px;          
+    /* 一行 5 张，二行 3 张 */
+    .row{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      align-items:baseline;
+      gap:2rem;
+    }
+    .row img{
+      height:40px;
       width:auto;
       object-fit:contain;
       transition:transform .25s ease,box-shadow .25s ease;
-      filter:none;            
     }
-    .institution-logos img:hover{
+    .row img:hover{
       transform:translateY(-3px);
       box-shadow:0 3px 12px rgba(0,0,0,.08);
     }
+    /* 第二行左右占位，宽度 = 第一行首尾图实际宽度 */
+    .spacer{
+      visibility:hidden;
+      height:40px;          /* 与图片同高，保证对齐 */
+    }
     @media (max-width:768px){
-      .institution-logos img{height:36px;}
+      .row img{height:36px;}
+      .spacer{height:36px;}
     }
   </style>
 
-  <img src="./images/surrey.png" alt="UoS">
-  <img src="./images/sz.png"     alt="SIAT">
-  <img src="./images/oxford.png" alt="Oxford">
-  <img src="./images/texas.png"  alt="UT Austin">
-  <img src="./images/pcl.png"    alt="PCL">
-  <img src="./images/SUAT.jpg"   alt="SUAT">
-  <img src="./images/zhongshan.png" alt="SYSU">
-  <img src="./images/ucas.png"   alt="UCAS">         
+  <!-- 第一行：5 张 -->
+  <div class="row">
+    <img src="./images/surrey.png" alt="UoS">
+    <img src="./images/sz.png"     alt="SIAT">
+    <img src="./images/oxford.png" alt="Oxford">
+    <img src="./images/texas.png"  alt="UT Austin">
+    <img src="./images/pcl.png"    alt="PCL">
+  </div>
+
+  <!-- 第二行：3 张，与上方中间 3 张对齐 -->
+  <div class="row">
+    <span class="spacer"></span>
+    <img src="./images/SUAT.jpg"   alt="SUAT">
+    <img src="./images/zhongshan.png" alt="SYSU">
+    <img src="./images/ucas.png"   alt="UCAS">
+    <span class="spacer"></span>
+  </div>
 </div>
 
           
