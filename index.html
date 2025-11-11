@@ -58,33 +58,30 @@
 
 
           
-<!-- 机构 logo 栏（无背景色，静态保持原色，仅浮动效果） -->
+<!-- 美观版 logo 栏 -->
 <div class="institution-logos">
   <style>
-    .institution-logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 1.2rem;
-      margin: 1rem 0 2rem 0;
+    .institution-logos{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:baseline;     /* 基线对齐 */
+      gap:2.0rem;               /* 宽松间隙 */
+      margin:1.2rem 0 2.4rem 0;
     }
-    .institution-logos img {
-      height: 48px;
-      width: auto;
-      object-fit: contain;
-      transition: transform .25s ease, box-shadow .25s ease;
-      cursor: default;
-      filter: none;          /* 保证原色 */
+    .institution-logos img{
+      height:40px;              /* 统一高度，可按需微调 */
+      width:auto;
+      object-fit:contain;
+      transition:transform .25s ease,box-shadow .25s ease;
+      filter:none;              /* 保持原色 */
     }
-    .institution-logos img:hover {
-      transform: translateY(-4px);   /* 仅向上浮动 */
-      box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    .institution-logos img:hover{
+      transform:translateY(-3px);
+      box-shadow:0 3px 12px rgba(0,0,0,.08);
     }
-    @media (max-width: 768px) {
-      .institution-logos img {
-        height: 40px;
-      }
+    @media (max-width:768px){
+      .institution-logos img{height:36px;}
     }
   </style>
 
