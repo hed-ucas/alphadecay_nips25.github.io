@@ -57,59 +57,45 @@
 
 <div class="institution-logos">
   <style>
-    .institution-logos{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:2rem;
-      margin:1.2rem 0 2.4rem 0;
+    .institution-logos {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr)); /* 5 列等宽 */
+      gap: 2rem 2rem;               /* 行、列间隙 */
+      justify-items: center;        /* 单列内水平居中 */
+      align-items: baseline;
+      margin: 1.2rem 0 2.4rem 0;
     }
-    /* 一行 5 张，二行 3 张 */
-    .row{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      align-items:baseline;
-      gap:2rem;
+    .institution-logos img {
+      height: 40px;
+      max-width: 100%;
+      width: auto;
+      object-fit: contain;
+      transition: transform .25s ease, box-shadow .25s ease;
     }
-    .row img{
-      height:40px;
-      width:auto;
-      object-fit:contain;
-      transition:transform .25s ease,box-shadow .25s ease;
+    .institution-logos img:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
     }
-    .row img:hover{
-      transform:translateY(-3px);
-      box-shadow:0 3px 12px rgba(0,0,0,.08);
-    }
-    /* 第二行左右占位，宽度 = 第一行首尾图实际宽度 */
-    .spacer{
-      visibility:hidden;
-      height:40px;          /* 与图片同高，保证对齐 */
-    }
-    @media (max-width:768px){
-      .row img{height:36px;}
-      .spacer{height:36px;}
+    /* 第二行 3 张：从列 2 到列 4 */
+    .second-row { grid-column: 2 / 5; }
+
+    @media (max-width: 768px) {
+      .institution-logos { gap: 1.2rem 1.2rem; }
+      .institution-logos img { height: 36px; }
     }
   </style>
 
   <!-- 第一行：5 张 -->
-  <div class="row">
-    <img src="./images/surrey.png" alt="UoS">
-    <img src="./images/sz.png"     alt="SIAT">
-    <img src="./images/oxford.png" alt="Oxford">
-    <img src="./images/texas.png"  alt="UT Austin">
-    <img src="./images/pcl.png"    alt="PCL">
-  </div>
+  <img src="./images/surrey.png" alt="UoS">
+  <img src="./images/sz.png"     alt="SIAT">
+  <img src="./images/oxford.png" alt="Oxford">
+  <img src="./images/texas.png"  alt="UT Austin">
+  <img src="./images/pcl.png"    alt="PCL">
 
-  <!-- 第二行：3 张，与上方中间 3 张对齐 -->
-  <div class="row">
-    <span class="spacer"></span>
-    <img src="./images/SUAT.jpg"   alt="SUAT">
-    <img src="./images/zhongshan.png" alt="SYSU">
-    <img src="./images/ucas.png"   alt="UCAS">
-    <span class="spacer"></span>
-  </div>
+  <!-- 第二行：3 张，严格对齐中间 3 列 -->
+  <img src="./images/SUAT.jpg"   alt="SUAT"  class="second-row">
+  <img src="./images/zhongshan.png" alt="SYSU" class="second-row">
+  <img src="./images/ucas.png"   alt="UCAS"  class="second-row">
 </div>
 
           
