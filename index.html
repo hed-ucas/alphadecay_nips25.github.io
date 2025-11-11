@@ -64,7 +64,6 @@
       gap:2rem;
       margin:1.2rem 0 2.4rem 0;
     }
-    /* 一行 5 张，二行 3 张 */
     .row{
       width:100%;
       display:flex;
@@ -82,10 +81,9 @@
       transform:translateY(-3px);
       box-shadow:0 3px 12px rgba(0,0,0,.08);
     }
-    /* 第二行左右占位，宽度 = 第一行首尾图实际宽度 */
     .spacer{
       visibility:hidden;
-      height:40px;          /* 与图片同高，保证对齐 */
+      height:40px; 
     }
     @media (max-width:768px){
       .row img{height:36px;}
@@ -93,7 +91,6 @@
     }
   </style>
 
-  <!-- 第一行：5 张 -->
   <div class="row">
     <img src="./images/surrey.png" alt="UoS">
     <img src="./images/sz.png"     alt="SIAT">
@@ -101,8 +98,6 @@
     <img src="./images/texas.png"  alt="UT Austin">
     <img src="./images/pcl.png"    alt="PCL">
   </div>
-
-  <!-- 第二行：3 张，与上方中间 3 张对齐 -->
   <div class="row">
     <span class="spacer"></span>
     <img src="./images/ucas.png"   alt="UCAS">
@@ -349,7 +344,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title">Acknowledgements</h2>
     <p>
-      This repository is built upon the <a href="https://github.com/jiaweizzhao/GaLore">Galore</a> and <a href="https://github.com/jiaweizzhao/GaLore">ConvNeXt</a> repositories. Thanks for their great work!
+      This repository is built upon the <a href="https://github.com/jiaweizzhao/GaLore">Galore</a> and <a href="https://github.com/facebookresearch/ConvNeXt">ConvNeXt</a> repositories. Thanks for their great work!
     </p>
   </div>
 </section>
