@@ -58,28 +58,35 @@
 
 
           
-<div class="institution-logos" style="margin: 1rem 0 2rem 0;">
+<!-- 机构 logo 栏（无浮动，轻美化） -->
+<div class="institution-logos">
   <style>
     .institution-logos {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0 2rem 0;
+      background: #f5f5f7;          /* 浅灰背景 */
+      border-radius: 12px;          /* 圆角卡片 */
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
     }
     .institution-logos img {
-      height: 52px;  
+      height: 48px;
       width: auto;
       object-fit: contain;
-      filter: grayscale(80%);
-      transition: filter .3s;
-    }
-    .institution-logos img:hover {
-      filter: grayscale(0%);
+      background: #fff;             /* 白底防透图 */
+      padding: 4px 8px;
+      border: 2px solid #e0e0e0;    /* 细描边 */
+      border-radius: 6px;
+      transition: none;             /* 禁用任何浮动/放大 */
+      cursor: default;
     }
     @media (max-width: 768px) {
       .institution-logos img {
-        height: 42px;
+        height: 40px;
       }
     }
   </style>
@@ -93,7 +100,6 @@
   <img src="./images/texas.png"  alt="UT Austin">
   <img src="./images/zhongshan.png" alt="SYSU">
 </div>
-
 
 
 
